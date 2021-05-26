@@ -18,8 +18,8 @@
   "homepage": "https://github.com/sudesai/DependabotNodeJs#readme",
   "dependencies": {
     "@github/combobox-nav": "^2.0.2",
-    "dc-names": "^1.2.1",
-    "marvel-comics-characters": "^1.1.1",
+    "dc-names": "^1.2.0",
+    "marvel-comics-characters": "^1.1.0",
     "supervillains": "^3.0.0"
   }
 }
