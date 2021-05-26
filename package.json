@@ -1,0 +1,22 @@
+{
+  "name": "dependabotnodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudesai/DependabotNodeJs.git"
+  },
+  "author": "sudesai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudesai/DependabotNodeJs/issues"
+  },
+  "homepage": "https://github.com/sudesai/DependabotNodeJs#readme",
+  "dependencies": {
+    "marvel-comics-characters": "^1.1.1"
+  }
+}
