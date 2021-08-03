@@ -62,6 +62,8 @@ jobs:
     needs: 
       - Checkout
     steps:
+      - name: Checkout github code
+        uses: actions/checkout@v2
       - name: Install node
         uses: actions/setup-node@v2
       - name: Install Dependencies
