@@ -1,18 +1,46 @@
+# Key: value
 name: Basic Commands
+
+# key: array[String]
+# It can be 
+# on : [push, pull_request] or
+# on: 
+#   - push
+#   - pull_request
+# Both are ways to define array in yaml
 on:
   - push
   - pull_request
 
+# If we check json object then it would be equivalent to:
+#  {
+#   jobs: {
+#     checkout: {
+#       runs-on : ubuntu-latest,
+#       steps: 
+#         [
+#           { name: Checkout github code, uses: actions/checkout@v2}
+#           { name: Bash Command, run: echo "Hello"}
+#           { name: Working dir, run: "whoami \n dir"}
+#         ]
+#     }
+#   }
+# }
+
+# key: Object
 jobs:
-  
+  # key: Object
   Checkout:
+    # key : value
     runs-on: ubuntu-latest
+    # key : array[Object]
     steps:
       - name: Checkout github code
         uses: actions/checkout@v2
       - name: Bash Command
         run: echo "Hello"
       - name: Working dir
+      # | combines all the below commands into one single string preserving spaces and then runs commsnd one by one
         run: |
           whoami
           dir
