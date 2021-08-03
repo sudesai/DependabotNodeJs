@@ -46,7 +46,7 @@ jobs:
           whoami
           dir
 
-  Simple Powershell Command:
+  Simple-Powershell-Command:
     runs-on: windows-latest
     steps:
       - name: Powershell Command
