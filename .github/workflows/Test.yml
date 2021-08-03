@@ -15,4 +15,4 @@ jobs:
       - name: Working dir
         run: |
           whoami
-          cwd
+          dir
