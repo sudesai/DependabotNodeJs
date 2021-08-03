@@ -7,9 +7,9 @@ jobs:
   
   Checkout:
     runs-on: ubuntu-latest
-	steps:
-	  - name: Checkout github code
-	    uses: actions/checkout@v2
-    - name: Bash Command
-      run: echo "Hello"
+    steps:
+      - name: Checkout github code
+        uses: actions/checkout@v2
+      - name: Bash Command
+        run: echo "Hello"
 		  
