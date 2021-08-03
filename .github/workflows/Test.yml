@@ -45,3 +45,13 @@ jobs:
         run: |
           whoami
           dir
+
+  Simple Powershell Command:
+    runs-on: windows-latest
+    steps:
+      - name: Powershell Command
+        run: Get-Location
+        shell: powershell
+      - name: Bash Command
+        run: pwd
+        shell: bash
