@@ -12,3 +12,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Bash Command
         run: echo "Hello"
+      - name: Working dir
+        run: |
+          whoami
+          cwd
