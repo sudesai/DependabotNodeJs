@@ -41,6 +41,7 @@ jobs:
         run: echo "Hello"
       - name: Working dir
       # | combines all the below commands into one single string preserving spaces and then runs commsnd one by one
+      # If we dont want to preserve spaces then replace | with >
         run: |
           whoami
           dir
