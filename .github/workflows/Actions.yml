@@ -1,0 +1,20 @@
+name: Actions
+on:
+  - push
+
+jobs:
+  
+  JavaScript-Hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Actions
+      # Every step can be gien by id so that it can be accessed by other stpes in job
+        id: greet
+      # Here I am using actions : username/repo-name@[version, commitSHA, branch-name]
+        uses: actions/hello-world-javascript-action@v1
+        # using with I can give input to actions. who-to-greet is the input key. For input keys look into actions document.
+        with:
+          who-to-greet: "Actions"
+        
+      - name: Output
+        run: echo "{{{ github.steps.greet.time }}}"
