@@ -15,6 +15,24 @@ jobs:
         # using with I can give input to actions. who-to-greet is the input key. For input keys look into actions document.
         with:
           who-to-greet: Actions
-        
+        # ${{}} using this we can access github variables. stpes gives us acess to any stpes in job and id gives access to that id and then output.<output> gives the output
+        # for <output> check respective actions doc
       - name: Output
         run: echo "${{ steps.greet.outputs.time }}"
+  
+  CheckoutCode:
+    runs-on: windows-latest
+    needs:
+      - JavaScript-Hello
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Basic Commands
+        run: |
+          cd
+          dir
+        shell: cmd
+      - name: Github variables
+        run: |
+          echo $Github_repo
+
