@@ -41,10 +41,13 @@ jobs:
         shell: bash
       - name: Github variables
         run: |
-          echo $GITHUB_SHA
+          echo $GITHUB_SHA 
           echo $GITHUB_REPOSITORY
           echo $GITHUB_WORKSPACE
           echo "${{ github.token }}"
         shell: cmd
-
+#  Github VARIABLES
+# $GITHUB_SHA - Last commit hash value
+# $GITHUB_REPOSITORY - username/repository_name
+# $GITHUB_WORSPACE - cureent working directory where github code was checked out
 
