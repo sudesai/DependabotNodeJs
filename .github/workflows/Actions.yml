@@ -34,5 +34,9 @@ jobs:
         shell: cmd
       - name: Github variables
         run: |
-          echo $Github_repo
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
+          echo "${{ github.token }}"
+
 
