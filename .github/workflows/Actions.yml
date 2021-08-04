@@ -22,8 +22,8 @@ jobs:
   
   CheckoutCode:
     runs-on: windows-latest
-    needs:
-      - JavaScript-Hello
+    # needs:
+    #   - JavaScript-Hello
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -38,5 +38,13 @@ jobs:
           echo $GITHUB_REPOSITORY
           echo $GITHUB_WORKSPACE
           echo "${{ github.token }}"
+        shell: bash
+      - name: Github variables
+        run: |
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
+          echo "${{ github.token }}"
+        shell: cmd
 
 
