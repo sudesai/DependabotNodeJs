@@ -18,7 +18,7 @@ jobs:
         # ${{}} using this we can access github variables. stpes gives us acess to any stpes in job and id gives access to that id and then output.<output> gives the output
         # for <output> check respective actions doc
       - name: Output
-        run: echo "${{ steps.greet.outputs.time }}"
+        run: echo "${ steps.greet.outputs.time }"
   
   CheckoutCode:
     runs-on: windows-latest
