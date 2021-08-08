@@ -40,7 +40,9 @@ jobs:
           echo $GITHUB_WORKSPACE
           echo "${{ github.token }}"
           echo $GITHUB_REF
-          cat .github\\workflows\\Actions.yml
+        shell: bash
+      - name: Github variables 2
+        run: ${{ github }}
         shell: bash
 #  Github VARIABLES
 # $GITHUB_SHA - Last commit hash value
