@@ -41,9 +41,9 @@ jobs:
           echo "${{ github.token }}"
           echo $GITHUB_REF
         shell: bash
-      - name: Github variables 2
-        run: echo "${{ toJSON(github) }}"
-        shell: bash
+      # - name: Github variables 2
+        # run: echo "${{ toJSON(github) }}"
+        # shell: bash
 #  Github VARIABLES
 # $GITHUB_SHA - Last commit hash value
 # $GITHUB_REPOSITORY - username/repository_name
