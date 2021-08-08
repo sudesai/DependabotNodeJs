@@ -9,8 +9,8 @@ name: Basic Commands Workflow
 #   - pull_request
 # Both are ways to define array in yaml
 on:
-  - push
-  - pull_request
+  pull_request:
+    branches: [main]
 
 # If we check json object then it would be equivalent to:
 #  {
