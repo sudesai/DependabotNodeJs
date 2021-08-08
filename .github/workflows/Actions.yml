@@ -42,9 +42,7 @@ jobs:
           echo $GITHUB_REF
         shell: bash
       - name: Github variables 2
-        run: |
-          echo ${{github}} >> github.json
-          cat github.json
+        run: "${{github}}"
         shell: bash
 #  Github VARIABLES
 # $GITHUB_SHA - Last commit hash value
