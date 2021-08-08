@@ -1,6 +1,7 @@
 name: Actions Workflow
 on:
-  - push
+  pull_request:
+    branches: [main] 
 
 jobs:
   
@@ -18,7 +19,7 @@ jobs:
         # ${{}} using this we can access github variables. stpes gives us acess to any stpes in job and id gives access to that id and then output.<output> gives the output
         # for <output> check respective actions doc
       - name: Output
-        run: echo "${ steps.greet.outputs.time }"
+        run: echo "${{ steps.greet.outputs.time }}"
   
   CheckoutCode:
     runs-on: windows-latest
@@ -38,14 +39,11 @@ jobs:
           echo $GITHUB_REPOSITORY
           echo $GITHUB_WORKSPACE
           echo "${{ github.token }}"
+          echo $GITHUB_REF
         shell: bash
-      - name: Github variables
-        run: |
-          echo $GITHUB_SHA 
-          echo $GITHUB_REPOSITORY
-          echo $GITHUB_WORKSPACE
-          echo "${{ github.token }}"
-        shell: cmd
+      # - name: Github variables 2
+        # run: echo "${{ toJSON(github) }}"
+        # shell: bash
 #  Github VARIABLES
 # $GITHUB_SHA - Last commit hash value
 # $GITHUB_REPOSITORY - username/repository_name
