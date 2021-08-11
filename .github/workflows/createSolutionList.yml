@@ -23,4 +23,5 @@ jobs:
           echo "Solution List- ${solutionList}"
           echo ${workspace}
           echo "${workspace}"
+        shell: bash
 
