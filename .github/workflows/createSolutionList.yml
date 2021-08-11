@@ -112,3 +112,7 @@ jobs:
           powershell main ${solutionList} ${workspace}
         shell: bash
 
+      - name: Veify XML file
+        run: cat "${workspace}\SolutionList.xml"
+        shell: pwsh
+
