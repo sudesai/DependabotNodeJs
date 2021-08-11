@@ -1,1 +1,21 @@
+name: Solution List
 
+on: 
+  push:
+    branches: [solution]
+
+env:
+  solutionList : >
+    '[
+    {"name":"solutionPath","path":"Project\\Build\\Licensing\\Licensing.sln","vsversion":"vs2017","usemsbuild":"false","buildconfig":"Release","buildplatform":"Win32"},
+    {"name":"solutionPath","path":"Project\\Build\\Files\\WUGLibs.sln","vsversion":"vs2017","usemsbuild":"false","buildconfig":"Release","buildplatform":"Any CPU"}
+    ]'
+  workspace: D:\\
+
+jobs:
+  
+  Check-Env-Variables: 
+    runs-on: windows-latest
+    steps:
+      - name: Verify Env Variables
+        run: echo "Solution List $solutionList" 
