@@ -17,8 +17,12 @@ jobs:
   Check-Env-Variables: 
     runs-on: windows-latest
     steps:
-      - name: Verify Env Variables
-        run: |
+      - name: Veify XML file
+        run: ls ${workspace}
+        shell: pwsh
+
+      - name: Main
+        run: >
           powershell '
           function main(){
 
@@ -63,7 +67,10 @@ jobs:
 
           }
           '
+        shell: bash
 
+      - name: XML
+        run: >
           powershell '
           function addSolutionListXMLItem(){
               # This function takes the object as input which we want to add under build node/element.
@@ -109,10 +116,12 @@ jobs:
               
           }
           '
-          powershell main ${solutionList} ${workspace}
+        shell: bash
+
+      - name : Run
+        run: powershell main ${solutionList} ${workspace}
         shell: bash
 
       - name: Veify XML file
-        run: cat "${workspace}\SolutionList.xml"
+        run: ls ${workspace}
         shell: pwsh
-
