@@ -20,8 +20,8 @@ jobs:
     steps:
       - name: Verify Env Variables
         run: |
-          Write-Output "Solution List- ${solutionList}"
-          Write-Output ${workspace}
-          Write-Host "${workspace}"
-        shell: pwsh
+          powershell Write-Output "Solution List- ${solutionList}"
+          powershell Write-Output ${workspace}
+          powershell Write-Host "${workspace}"
+        shell: bash
 
