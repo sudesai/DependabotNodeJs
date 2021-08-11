@@ -18,4 +18,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Verify Env Variables
-        run: echo "Solution List ${{solutionList}}" 
+        run: |
+          echo "Solution List ${solutionList}" 
+          echo "${workspace}"
