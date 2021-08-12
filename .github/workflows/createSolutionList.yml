@@ -40,18 +40,23 @@ jobs:
         env :
           xmlWriter: ${{ steps.XML-Writer.outputs.XML-Writer-Object }}
         run: |
+          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Formatting = 'Indented'"
           "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartDocument()"
+          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Indentation = 1"
+          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.IndentChar = '`t'"
           "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartElement('build')"
           "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteEndElement()"
           "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteEndDocument()"
           "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Flush()"
           "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Close()"
           
-      - run: |
           echo "$xmlWriter"
           echo "${xmlWriter}"
           echo "${env.xmlWriter}"
           echo "${{ env.xmlWriter }}"
+          
+      - name: Read XML File
+        run : cat "${Env:workspace}\SolutionList.xml"
         
       # - name: XML Writer
       #   id: XML-Writer2
