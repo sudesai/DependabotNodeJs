@@ -21,6 +21,10 @@ jobs:
       - name: Veify XML file
         run: ls ${workspace}
         shell: pwsh
+        
+      - name : Run
+        run: powershell Write-Output ${solutionList} ${workspace}
+        shell: cmd
 
       - name: Create XML file
         run: |
@@ -38,7 +42,7 @@ jobs:
 
       - name : Run
         run: powershell main ${solutionList} ${workspace}
-        shell: bash
+        shell: cmd
 
       - name: Veify XML file
         run: ls ${workspace}
