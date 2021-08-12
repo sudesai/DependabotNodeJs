@@ -1,7 +1,7 @@
 name: Solution List
 on: 
   push:
-    branches: [createSolutionList]
+    branches: [solution]
 
 env:
   solutionList : >
