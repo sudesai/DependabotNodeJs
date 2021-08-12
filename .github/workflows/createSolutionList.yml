@@ -26,7 +26,7 @@ jobs:
         run: ls ${Env:workspace}
 
       - name: Array
-        run: for (f in ${solutionList}); do (f); done
+        run: for (f in ${solutionList}){ f }
       
       - name: XML Writer
         run: >
