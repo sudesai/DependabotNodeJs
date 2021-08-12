@@ -25,102 +25,16 @@ jobs:
       - name: Variables Bash
         run: echo "Solution Path- ${solutionList}"
         shell: bash
+        
+      - name: XML Writer
+        id: XML-Writer
+        run: '::set-output name=XML-Writer-Object::New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null)'
+        shell: pwsh
 
-      # - name: Create XML file
-      #   run: |
-      #     powershell 'New-Object System.XMl.XmlTextWriter("${workspace}\SolutionList.xml",$Null)'
-      #   shell: bash
+      - name: Call Object
+        run: Write-Host "${{ steps.XML-Writer.outputs.XML-Writer-Object}}"
 
-      - name: Self exe
-        run: >
-          powershell '
-          & {
-
-              param (
-              $solutionList, 
-              $workspace
-              )
-
-              if($solutionList -and $workspace){
-
-                  #  creating xml file with "build" as root node/element
-                  $xmlWriter = New-Object System.XMl.XmlTextWriter(\"$workspace\SolutionList.xml\",$Null)
-                  $xmlWriter.Formatting = "Indented"
-                  $xmlWriter.Indentation = 1
-                  $XmlWriter.IndentChar = "`t"
-                  $xmlWriter.WriteStartDocument()
-                  $xmlWriter.WriteStartElement(`"build"`)
-                  $xmlWriter.WriteEndElement()
-                  $xmlWriter.WriteEndDocument()
-                  $xmlWriter.Flush()
-                  $xmlWriter.Close()
-
-                  Write-Host "-- Incoming Solution List is: $solutionList"
-
-                  #  converting jsonstring into json
-                  $solutionListObj = $solutionList | ConvertFrom-Json
-
-                  # iterating over objects and adding each object as element in XML File
-                  foreach($solutionListNode in $solutionListObj)
-                  {   
-                      & {
-                          # This function takes the object as input which we want to add under build node/element.
-                          param
-                          (
-                              $path,
-                              $vsversion,
-                              $usemsbuild,
-                              $buildconfig,
-                              $buildplatform
-                          
-                          )
-
-                          if($path -and $vsversion -and $usemsbuild -and $buildconfig -and $buildplatform){
-                              Write-Host "**Incoming Solution Info..."
-                              Write-Host "-- Solution: $path"
-                              Write-Host "-- Build Config:  $buildconfig"
-                              Write-Host "-- Build Platform: $buildplatform"
-                              Write-Host "-- Use msbuild: $usemsbuild"
-                              Write-Host "-- Visual Studio Version: $vsversion"
-
-                              $solutionListXML = [System.Xml.XmlDocument](Get-Content "$workspace\SolutionList.xml")
-                              $root = $solutionListXML.SelectSingleNode("build")
-                              if($root){
-                                  $newElement = $root.AppendChild($solutionListXML.CreateElement("solution"))
-                                  $newElement.InnerText = $path
-                                  $newElement.SetAttribute("vsversion",$vsversion)
-                                  $newElement.SetAttribute("usemsbuild",$usemsbuild)
-                                  $newElement.SetAttribute("buildconfig",$buildconfig)
-                                  $newElement.SetAttribute("buildplatform",$buildplatform)
-                                  $solutionListXML.Save("$workspace\SolutionList.xml")
-                              }
-                              else{
-                                  throw "-- Could not find the *build* root node! You got fundamental script problems to fix!"
-                              }
-
-                          }
-                          else{
-                              
-                              Write-Host "  -- Failed to add Solution item!" -BackgroundColor Red
-                              throw "Arguments are missing. solutionpath, vsversion, buildconfig, buildplatform, usemsbuild are required parameters"
-                          }
-                          
-                      } $solutionListNode.path $solutionListNode.vsversion $solutionListNode.usemsbuild $solutionListNode.buildconfig $solutionListNode.buildplatform
-                  }
-
-                  $solutionListXML = Get-Content "$workspace\SolutionList.xml"
-                  Write-Host "-- Final solutionListXMLContent is: `n $solutionListXML" 
-                  Write-Host "  ** Done Adding Solution Item"
-                  
-              }
-              else{
-                  throw "Script needs solutionList and workspace as arguments!"
-              }
-
-          } ${solutionList} ${workspace}
-          
-          ' 
-
+           
       - name: Veify XML file
         run: ls ${workspace}
         shell: pwsh
