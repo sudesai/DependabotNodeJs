@@ -36,5 +36,5 @@ jobs:
 
            
       - name: Veify XML file
-        run: ls ${workspace}
+        run: ls ${Env:workspace}
         shell: pwsh
