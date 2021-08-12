@@ -30,6 +30,11 @@ jobs:
         run: ls ${Env:workspace}
         shell: pwsh
         
+      - name: XML Writer 
+        run: |
+          Write-Output "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null)"
+        shell: pwsh
+        
       - name: XML Writer
         id: XML-Writer
         run: |
