@@ -18,8 +18,8 @@ jobs:
     runs-on: windows-latest
     steps:
 
-#       - name: Variables Powershell
-#         run: Write-Host "Solution Path-" ${{env.solutionList}}
+      # - name: Variables Powershell
+      #   run: Write-Host "Solution Path-" ${{env.solutionList}}
  
         
       - name: Veify XML file
@@ -42,10 +42,11 @@ jobs:
       - name: Add First Solution
         run: >
           $solutionListObj = ${Env:solutionList} | ConvertFrom-Json;
-          echo $solutionListObj[0];
           $solutionListXML = [System.Xml.XmlDocument](Get-Content "${Env:workspace}\SolutionList.xml");
-          
-          
+          foreach($solutionListNode in $solutionListObj)
+          {   
+            Write-Output $solutionListNode.path
+          };
 
       - name: Add First Solution
         run: >
