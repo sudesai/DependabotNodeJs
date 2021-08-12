@@ -41,7 +41,7 @@ jobs:
 
       - name: Add First Solution
         run: >
-          $solutionListObj = ${Env:solutionList} | ConvertFrom-Json;
+          $solutionListObj = ${Env:solutionList} | ConvertTo-Json | ConvertFrom-Json;
           $solutionListXML = [System.Xml.XmlDocument](Get-Content "${Env:workspace}\SolutionList.xml");
           foreach($solutionListNode in ${Env:solutionList} | ConvertFrom-Json){ Write-Host $solutionListNode.path };
           
