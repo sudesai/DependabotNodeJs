@@ -4,7 +4,8 @@ on:
     branches: [solution]
 
 env:
-  solutionList : [
+  solutionList : >
+    [
     {"name":"solutionPath","path":"Project\\Build\\Licensing\\Licensing.sln","vsversion":"vs2017","usemsbuild":"false","buildconfig":"Release","buildplatform":"Win32"},
     {"name":"solutionPath","path":"Project\\Build\\Files\\WUGLibs.sln","vsversion":"vs2017","usemsbuild":"false","buildconfig":"Release","buildplatform":"Any CPU"}
     ]
