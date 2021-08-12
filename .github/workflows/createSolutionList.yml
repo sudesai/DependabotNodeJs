@@ -42,8 +42,8 @@ jobs:
       - name: Add First Solution
         run: >
           $solutionListObj = ${Env:solutionList} | ConvertFrom-Json;
-          Write-Output $solutionListObj
-          Write-Output $solutionListObj[0]
+          Write-Output $solutionListObj;
+          Write-Output $solutionListObj[0];
           $solutionListXML = [System.Xml.XmlDocument](Get-Content "${Env:workspace}\SolutionList.xml");
           $root = $solutionListXML.SelectSingleNode("build");
           $newElement = $root.AppendChild($solutionListXML.CreateElement("solution"));
