@@ -36,14 +36,25 @@ jobs:
           echo "::set-output name=XML-Writer-Object::$(New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null))"
         shell: pwsh
 
-      - name: Call Object
-        run: echo "${{ steps.XML-Writer.outputs.XML-Writer-Object }}"
-        
-      - name: XML Writer
-        id: XML-Writer2
+      - name: Add Properties to XML File
+        env :
+          xmlWriter: ${{ steps.XML-Writer.outputs.XML-Writer-Object }}
         run: |
-          echo "XML-Writer-Object2=$(New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null))"  >> $GITHUB_ENV
-        shell: pwsh
+          ${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Formatting = "Indented"
+          $xmlWriter.Indentation = 1
+          $XmlWriter.IndentChar = "`t"
+          $xmlWriter.WriteStartDocument()
+          $xmlWriter.WriteStartElement("build")
+          $xmlWriter.WriteEndElement()
+          $xmlWriter.WriteEndDocument()
+          $xmlWriter.Flush()
+          $xmlWriter.Close()
+        
+      # - name: XML Writer
+      #   id: XML-Writer2
+      #   run: |
+      #     echo "XML-Writer-Object2=$(New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null))"  >> $GITHUB_ENV
+      #   shell: pwsh
 
       - name: Call Object
         run: echo "${{ env.XML-Writer-Object2 }}"
