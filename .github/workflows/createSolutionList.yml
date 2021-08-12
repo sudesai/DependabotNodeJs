@@ -19,7 +19,7 @@ jobs:
     steps:
 
       - name: Variables Powershell
-        run: Write-Host "Solution Path-" ${ENV:solutionList}
+        run: Write-Host "Solution Path-" ${{env.solutionList}}
         shell: pwsh
 
       - name: Variables Bash
@@ -57,16 +57,20 @@ jobs:
           
       - name: Read XML File
         run : cat "${Env:workspace}\SolutionList.xml"
+        shell: pwsh
         
-      # - name: XML Writer
-      #   id: XML-Writer2
-      #   run: |
-      #     echo "XML-Writer-Object2=$(New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null))"  >> $GITHUB_ENV
-      #   shell: pwsh
-
-      - name: Call Object
-        run: echo "${{ env.XML-Writer-Object2 }}"
-
+      - name: Read XML File
+        run : cat "${{env.workspace}}\SolutionList.xml"
+        shell: pwsh
+      
+      - name: Read XML File
+        run : cat "${{env.workspace}}\SolutionList.xml"
+        shell: bash
+        
+      - name: Read XML File
+        run : cat D:\\SolutionList.xml
+        shell: pwsh
+        
            
       - name: Veify XML file
         run: ls ${Env:workspace}
