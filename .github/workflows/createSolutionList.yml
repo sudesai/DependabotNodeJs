@@ -28,11 +28,11 @@ jobs:
         
       - name: XML Writer
         id: XML-Writer
-        run: $xml=New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null) >> $GITHUB_ENV
+        run: ::set-env name=XML-Writer-Object::$(New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null))
         shell: pwsh
 
       - name: Call Object
-        run: echo "${{ env.xml }}"
+        run: echo "${{ env.XML-Writer-Object }}"
 
            
       - name: Veify XML file
