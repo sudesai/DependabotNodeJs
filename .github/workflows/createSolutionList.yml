@@ -41,11 +41,17 @@ jobs:
           xmlWriter: ${{ steps.XML-Writer.outputs.XML-Writer-Object }}
         run: |
           "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartDocument()"
-          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartElement("build")"
+          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartElement('build')"
           "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteEndElement()"
           "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteEndDocument()"
           "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Flush()"
           "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Close()"
+          
+      - run: |
+          echo "$xmlWriter"
+          echo "${xmlWriter}"
+          echo "${env.xmlWriter}"
+          echo "${{ env.xmlWriter }}"
         
       # - name: XML Writer
       #   id: XML-Writer2
