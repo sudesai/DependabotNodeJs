@@ -39,43 +39,15 @@ jobs:
           $xmlWriter.Close();
         shell: pwsh
 
+      - name: Add First Solution
+        run: >
+          $solutionListObj = ${Env:solutionList} | ConvertFrom-Json;
+          foreach($solutionListNode in $solutionListObj)
+          {   
+            Write-Host $solutionListNode
+          }
 
-      # - name: XML Writer
-      #   run: |
-      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null)"
-      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).Formatting = 'Indented'"
-      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).WriteStartDocument()"
-      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).Indentation = 1"
-      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).WriteStartElement('build')"
-      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).WriteEndElement()"
-      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).WriteEndDocument()"
-      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).Flush()"
-      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).Close()"
 
-      # - name: XML Writer
-      #   id: XML-Writer
-      #   run: |
-      #     echo "::set-output name=XML-Writer-Object::$(New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null))"
-       
-
-      # - name: Add Properties to XML File
-      #   env :
-      #     xmlWriter: ${{ steps.XML-Writer.outputs.XML-Writer-Object }}
-      #   run: |
-      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Formatting = 'Indented'"
-      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartDocument()"
-      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Indentation = 1"
-      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.IndentChar = '`t'"
-      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartElement('build')"
-      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteEndElement()"
-      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteEndDocument()"
-      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Flush()"
-      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Close()"
-          
-      #     echo "$xmlWriter"
-      #     echo "${xmlWriter}"
-      #     echo "${env.xmlWriter}"
-      #     echo "${{ env.xmlWriter }}"
           
       - name: Read XML File
         run : cat "${Env:workspace}\SolutionList.xml"
