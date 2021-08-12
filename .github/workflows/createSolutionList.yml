@@ -5,10 +5,10 @@ on:
 
 env:
   solutionList : >
-    [
+    '[
     {"name":"solutionPath","path":"Project\\Build\\Licensing\\Licensing.sln","vsversion":"vs2017","usemsbuild":"false","buildconfig":"Release","buildplatform":"Win32"},
     {"name":"solutionPath","path":"Project\\Build\\Files\\WUGLibs.sln","vsversion":"vs2017","usemsbuild":"false","buildconfig":"Release","buildplatform":"Any CPU"}
-    ]
+    ]'
   workspace: D:\\
   
 
@@ -19,14 +19,11 @@ jobs:
     steps:
 
       - name: Variables Powershell
-        run: Write-Host "Solution Path-" ${{env.solutionList[0]}}
+        run: Write-Host "Solution Path-" ${{env.solutionList}}
  
         
       - name: Veify XML file
         run: ls ${Env:workspace}
-
-      - name: Array
-        run: for (f in ${solutionList}){ f }
       
       - name: XML Writer
         run: >
@@ -45,8 +42,9 @@ jobs:
       - name: Add First Solution
         run: >
           $solutionListObj = ${Env:solutionList} | ConvertFrom-Json;
+          echo $solutionListObj[0]
           $solutionListXML = [System.Xml.XmlDocument](Get-Content "${Env:workspace}\SolutionList.xml");
-          foreach($solutionListNode in $solutionListObj | ConvertFrom-Json){ Write-Host $solutionListNode.path };
+          
           
 
       - name: Add First Solution
