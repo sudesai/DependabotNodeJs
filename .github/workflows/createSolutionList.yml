@@ -18,8 +18,8 @@ jobs:
     runs-on: windows-latest
     steps:
 
-#       - name: Variables Powershell
-#         run: Write-Host "Solution Path-" ${{env.solutionList}}
+      - name: Variables Powershell
+        run: Write-Host "Solution Path-" ${{env.solutionList[0]}}
  
         
       - name: Veify XML file
