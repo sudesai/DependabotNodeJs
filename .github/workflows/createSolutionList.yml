@@ -40,7 +40,7 @@ jobs:
               if($solutionList -and $workspace){
 
                   #  creating xml file with "build" as root node/element
-                  $xmlWriter = New-Object System.XMl.XmlTextWriter("$workspace\SolutionList.xml",$Null)
+                  $xmlWriter = New-Object System.XMl.XmlTextWriter(\"$workspace\SolutionList.xml\",$Null)
                   $xmlWriter.Formatting = "Indented"
                   $xmlWriter.Indentation = 1
                   $XmlWriter.IndentChar = "`t"
