@@ -24,17 +24,17 @@ jobs:
 
       - name: Create XML file
         run: |
-          powershell $xmlWriter = New-Object System.XMl.XmlTextWriter("${workspace}\SolutionList.xml",$Null)
-          powershell $xmlWriter.Formatting = "Indented"
-          powershell $xmlWriter.Indentation = 1
-          powershell $XmlWriter.IndentChar = "`t"
-          powershell $xmlWriter.WriteStartDocument()
-          powershell $xmlWriter.WriteStartElement("build")
-          powershell $xmlWriter.WriteEndElement()
-          powershell $xmlWriter.WriteEndDocument()
-          powershell $xmlWriter.Flush()
-          powershell $xmlWriter.Close()
-        shell: bash
+          $xmlWriter = New-Object System.XMl.XmlTextWriter("${workspace}\SolutionList.xml",$Null)
+          $xmlWriter.Formatting = "Indented"
+          $xmlWriter.Indentation = 1
+          $XmlWriter.IndentChar = "`t"
+          $xmlWriter.WriteStartDocument()
+          $xmlWriter.WriteStartElement("build")
+          $xmlWriter.WriteEndElement()
+          $xmlWriter.WriteEndDocument()
+          $xmlWriter.Flush()
+          $xmlWriter.Close()
+        shell: pwsh
 
       - name : Run
         run: powershell main ${solutionList} ${workspace}
