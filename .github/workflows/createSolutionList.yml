@@ -21,6 +21,10 @@ jobs:
       - name: Veify XML file
         run: ls ${workspace}
         shell: pwsh
+      
+      - name: Self Exe
+        run: powershell '& { param($msg) Write-Host $msg } "Hello World"'
+        shell: bash
 
       - name: Create XML file
         run: |
