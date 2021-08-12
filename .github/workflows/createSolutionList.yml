@@ -32,7 +32,7 @@ jobs:
         
       - name: XML Writer 
         run: |
-          Write-Output "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null)" | Get-Member
+          Write-Output "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null)" | echo "$_"
         shell: pwsh
         
       - name: XML Writer
