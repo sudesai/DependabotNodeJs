@@ -41,8 +41,8 @@ jobs:
 
       - name: Add First Solution
         run: >
-          $solutionListObj = ${Env:solutionList} | ConvertFrom-Json;
-          echo $solutionListObj[0]
+          $solutionListObj = ${Env:solutionList} | ConvertTo-Json |ConvertFrom-Json;
+          echo $solutionListObj[0];
           $solutionListXML = [System.Xml.XmlDocument](Get-Content "${Env:workspace}\SolutionList.xml");
           
           
