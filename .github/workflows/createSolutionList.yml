@@ -40,7 +40,7 @@ jobs:
         env :
           xmlWriter: ${{ steps.XML-Writer.outputs.XML-Writer-Object }}
         run: |
-          ${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartDocument()
+          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartDocument()"
           $xmlWriter.WriteStartElement("build")
           $xmlWriter.WriteEndElement()
           $xmlWriter.WriteEndDocument()
