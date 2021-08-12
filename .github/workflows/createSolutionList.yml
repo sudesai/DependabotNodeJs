@@ -42,6 +42,8 @@ jobs:
       - name: Add First Solution
         run: >
           $solutionListObj = ${Env:solutionList} | ConvertFrom-Json;
+          Write-Output $solutionListObj
+          Write-Output $solutionListObj[0]
           $solutionListXML = [System.Xml.XmlDocument](Get-Content "${Env:workspace}\SolutionList.xml");
           $root = $solutionListXML.SelectSingleNode("build");
           $newElement = $root.AppendChild($solutionListXML.CreateElement("solution"));
@@ -61,12 +63,6 @@ jobs:
       - name: Read XML File
         run : cat "${{env.workspace}}\SolutionList.xml"
        
-      
-             
-      - name: Read XML File
-        run : cat c:\\SolutionList.xml
-
-        
            
       - name: Veify XML file
         run: ls ${Env:workspace}
