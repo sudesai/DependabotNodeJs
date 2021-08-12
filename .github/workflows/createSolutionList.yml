@@ -1,7 +1,7 @@
 name: Solution List
 on: 
   push:
-    branches: [solution]
+    branches: [createSolutionList]
 
 env:
   solutionList : >
@@ -15,68 +15,81 @@ env:
 jobs:
   
   Check-Env-Variables: 
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
 
       - name: Variables Powershell
         run: Write-Host "Solution Path-" ${{env.solutionList}}
-        shell: pwsh
-
-      - name: Variables Bash
-        run: echo "Solution Path- ${solutionList}"
-        shell: bash
+ 
         
       - name: Veify XML file
         run: ls ${Env:workspace}
-        shell: pwsh
-        
-      - name: XML Writer 
-        run: |
-          Write-Output "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null)" | echo "$_"
-        shell: pwsh
-        
+      
       - name: XML Writer
-        id: XML-Writer
-        run: |
-          echo "::set-output name=XML-Writer-Object::$(New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null))"
+        run: >
+          $xmlWriter = New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null);
+          $xmlWriter.Formatting = 'Indented';
+          $xmlWriter.Indentation = 1;
+          $XmlWriter.IndentChar = "`t";
+          $xmlWriter.WriteStartDocument();
+          $xmlWriter.WriteStartElement('build');
+          $xmlWriter.WriteEndElement();
+          $xmlWriter.WriteEndDocument();
+          $xmlWriter.Flush();
+          $xmlWriter.Close();
         shell: pwsh
 
-      - name: Add Properties to XML File
-        env :
-          xmlWriter: ${{ steps.XML-Writer.outputs.XML-Writer-Object }}
-        run: |
-          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Formatting = 'Indented'"
-          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartDocument()"
-          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Indentation = 1"
-          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.IndentChar = '`t'"
-          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartElement('build')"
-          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteEndElement()"
-          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteEndDocument()"
-          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Flush()"
-          "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Close()"
+
+      # - name: XML Writer
+      #   run: |
+      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null)"
+      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).Formatting = 'Indented'"
+      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).WriteStartDocument()"
+      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).Indentation = 1"
+      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).WriteStartElement('build')"
+      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).WriteEndElement()"
+      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).WriteEndDocument()"
+      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).Flush()"
+      #     "New-Object System.XMl.XmlTextWriter('${Env:workspace}\SolutionList.xml',$Null).Close()"
+
+      # - name: XML Writer
+      #   id: XML-Writer
+      #   run: |
+      #     echo "::set-output name=XML-Writer-Object::$(New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null))"
+       
+
+      # - name: Add Properties to XML File
+      #   env :
+      #     xmlWriter: ${{ steps.XML-Writer.outputs.XML-Writer-Object }}
+      #   run: |
+      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Formatting = 'Indented'"
+      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartDocument()"
+      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Indentation = 1"
+      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.IndentChar = '`t'"
+      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartElement('build')"
+      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteEndElement()"
+      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteEndDocument()"
+      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Flush()"
+      #     "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.Close()"
           
-          echo "$xmlWriter"
-          echo "${xmlWriter}"
-          echo "${env.xmlWriter}"
-          echo "${{ env.xmlWriter }}"
+      #     echo "$xmlWriter"
+      #     echo "${xmlWriter}"
+      #     echo "${env.xmlWriter}"
+      #     echo "${{ env.xmlWriter }}"
           
       - name: Read XML File
         run : cat "${Env:workspace}\SolutionList.xml"
-        shell: pwsh
+        
         
       - name: Read XML File
         run : cat "${{env.workspace}}\SolutionList.xml"
-        shell: pwsh
+       
       
+             
       - name: Read XML File
-        run : cat "${{env.workspace}}\SolutionList.xml"
-        shell: bash
-        
-      - name: Read XML File
-        run : cat D:\\SolutionList.xml
-        shell: pwsh
+        run : cat c:\\SolutionList.xml
+
         
            
       - name: Veify XML file
         run: ls ${Env:workspace}
-        shell: pwsh
