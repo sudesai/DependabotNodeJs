@@ -45,7 +45,7 @@ jobs:
                   $xmlWriter.Indentation = 1
                   $XmlWriter.IndentChar = "`t"
                   $xmlWriter.WriteStartDocument()
-                  $xmlWriter.WriteStartElement(\"build\")
+                  $xmlWriter.WriteStartElement(`"build"`)
                   $xmlWriter.WriteEndElement()
                   $xmlWriter.WriteEndDocument()
                   $xmlWriter.Flush()
