@@ -18,9 +18,13 @@ jobs:
     runs-on: windows-latest
     steps:
 
-      - name: Veify XML file
-        run: ls ${workspace}
+      - name: Variables Powershell
+        run: Write-Host "Solution Path- ${solutionList}"
         shell: pwsh
+
+      - name: Variables Bash
+        run: powershell 'Write-Host "Solution Path- ${solutionList}"'
+        shell: bash
 
       # - name: Create XML file
       #   run: |
