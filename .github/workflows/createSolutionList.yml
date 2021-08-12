@@ -15,7 +15,7 @@ env:
 jobs:
   
   Check-Env-Variables: 
-    runs-on: self-hosted
+    runs-on: windows-latest
     steps:
 
       - name: Variables Powershell
