@@ -28,7 +28,7 @@ jobs:
         
       - name: XML Writer
         id: XML-Writer
-        run: ::set-env name=XML-Writer-Object::$(New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null))
+        run: echo ::set-env name=XML-Writer-Object::$(New-Object System.XMl.XmlTextWriter("${Env:workspace}\SolutionList.xml",$Null))
         shell: pwsh
 
       - name: Call Object
