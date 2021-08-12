@@ -4,11 +4,10 @@ on:
     branches: [solution]
 
 env:
-  solutionList : >
-    '[
+  solutionList : [
     {"name":"solutionPath","path":"Project\\Build\\Licensing\\Licensing.sln","vsversion":"vs2017","usemsbuild":"false","buildconfig":"Release","buildplatform":"Win32"},
     {"name":"solutionPath","path":"Project\\Build\\Files\\WUGLibs.sln","vsversion":"vs2017","usemsbuild":"false","buildconfig":"Release","buildplatform":"Any CPU"}
-    ]'
+    ]
   workspace: D:\\
   
 
@@ -24,6 +23,9 @@ jobs:
         
       - name: Veify XML file
         run: ls ${Env:workspace}
+
+      - name: Array
+        run: for f in ${solutionList}; do f; done
       
       - name: XML Writer
         run: >
@@ -41,9 +43,9 @@ jobs:
 
       - name: Add First Solution
         run: >
-          $solutionListObj = ${Env:solutionList} | ConvertTo-Json | ConvertFrom-Json;
+          $solutionListObj = ${Env:solutionList} | ConvertFrom-Json;
           $solutionListXML = [System.Xml.XmlDocument](Get-Content "${Env:workspace}\SolutionList.xml");
-          foreach($solutionListNode in $solutionListObj){ Write-Host $solutionListNode.path };
+          foreach($solutionListNode in $solutionListObj | ConvertFrom-Json){ Write-Host $solutionListNode.path };
           
 
       - name: Add First Solution
