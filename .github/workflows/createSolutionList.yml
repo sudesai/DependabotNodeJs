@@ -23,7 +23,7 @@ jobs:
         shell: pwsh
 
       - name: Variables Bash
-        run: powershell 'Write-Host "Solution Path- ${solutionList}"'
+        run: echo "Solution Path- ${solutionList}"
         shell: bash
 
       # - name: Create XML file
