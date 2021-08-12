@@ -41,11 +41,11 @@ jobs:
           xmlWriter: ${{ steps.XML-Writer.outputs.XML-Writer-Object }}
         run: |
           "${{ steps.XML-Writer.outputs.XML-Writer-Object }}.WriteStartDocument()"
-          $xmlWriter.WriteStartElement("build")
-          $xmlWriter.WriteEndElement()
-          $xmlWriter.WriteEndDocument()
-          $xmlWriter.Flush()
-          $xmlWriter.Close()
+          ${xmlWriter}.WriteStartElement("build")
+          ${xmlWriter}.WriteEndElement()
+          ${xmlWriter}.WriteEndDocument()
+          ${xmlWriter}.Flush()
+          ${xmlWriter}.Close()
         
       # - name: XML Writer
       #   id: XML-Writer2
