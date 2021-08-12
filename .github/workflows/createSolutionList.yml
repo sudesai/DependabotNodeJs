@@ -19,7 +19,7 @@ jobs:
     steps:
 
       - name: Variables Powershell
-        run: Write-Host "Solution Path- ${solutionList}"
+        run: Write-Host "Solution Path-" ${solutionList}
         shell: pwsh
 
       - name: Variables Bash
