@@ -5,10 +5,10 @@ on:
 
 env:
   solutionList : >
-    '[
+    [
     {"name":"solutionPath","path":"Project\\Build\\Licensing\\Licensing.sln","vsversion":"vs2017","usemsbuild":"false","buildconfig":"Release","buildplatform":"Win32"},
     {"name":"solutionPath","path":"Project\\Build\\Files\\WUGLibs.sln","vsversion":"vs2017","usemsbuild":"false","buildconfig":"Release","buildplatform":"Any CPU"}
-    ]'
+    ]
   workspace: D:\\
   
 
@@ -41,7 +41,7 @@ jobs:
 
       - name: Add First Solution
         run: >
-          $solutionListObj = ${Env:solutionList} | ConvertTo-Json |ConvertFrom-Json;
+          $solutionListObj = ${Env:solutionList} | ConvertFrom-Json;
           echo $solutionListObj[0];
           $solutionListXML = [System.Xml.XmlDocument](Get-Content "${Env:workspace}\SolutionList.xml");
           
