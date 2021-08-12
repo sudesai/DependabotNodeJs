@@ -41,9 +41,9 @@ jobs:
 
                   #  creating xml file with "build" as root node/element
                   $xmlWriter = New-Object System.XMl.XmlTextWriter(\"$workspace\SolutionList.xml\",$Null)
-                  $xmlWriter.Formatting = \"Indented\"
+                  $xmlWriter.Formatting = "Indented"
                   $xmlWriter.Indentation = 1
-                  $XmlWriter.IndentChar = \"`t\"
+                  $XmlWriter.IndentChar = "`t"
                   $xmlWriter.WriteStartDocument()
                   $xmlWriter.WriteStartElement(\"build\")
                   $xmlWriter.WriteEndElement()
