@@ -42,10 +42,15 @@ jobs:
       - name: Add First Solution
         run: >
           $solutionListObj = ${Env:solutionList} | ConvertFrom-Json;
-          foreach($solutionListNode in $solutionListObj)
-          {   
-            Write-Host $solutionListNode
-          }
+          $solutionListXML = [System.Xml.XmlDocument](Get-Content "${Env:workspace}\SolutionList.xml");
+          $root = $solutionListXML.SelectSingleNode("build");
+          $newElement = $root.AppendChild($solutionListXML.CreateElement("solution"));
+          $newElement.InnerText = $solutionListObj[0].path;
+          $newElement.SetAttribute("vsversion",$solutionListObj[0].vsversion);
+          $newElement.SetAttribute("usemsbuild",$solutionListObj[0].usemsbuild);
+          $newElement.SetAttribute("buildconfig",$solutionListObj[0].buildconfig);
+          $newElement.SetAttribute("buildplatform",$solutionListObj[0].buildplatform);
+          $solutionListXML.Save("${Env:workspace}\SolutionList.xml");
 
 
           
