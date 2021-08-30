@@ -20,7 +20,7 @@
     "@github/combobox-nav": "^2.0.2",
     "dc-names": "^1.2.0",
     "marvel-comics-characters": "^1.1.0",
-    "mocha": "^9.0.3",
+    "mocha": "^9.1.1",
     "supervillains": "^3.0.0"
   }
 }
