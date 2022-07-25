@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/sudesai/DependabotNodeJs#readme",
   "dependencies": {
-    "@github/combobox-nav": "^2.0.2",
+    "@github/combobox-nav": "^2.1.5",
     "dc-names": "^1.2.0",
     "marvel-comics-characters": "^1.1.0",
     "mocha": "^9.0.3",
